@@ -1,0 +1,19 @@
+<div class="login">
+
+<div class="log" *ngIf="!(auth.authState$ | async)">
+    <h2>Super wycieczki - logowanie</h2>
+    <input type="text" [(ngModel)]="email" placeholder="email">
+    <input type="password" [(ngModel)]="password" placeholder="password">
+    <br>
+    <button (click)="signUp()">Zarejestruj</button>
+
+    <button (click)="signIn()">Zaloguj</button>
+</div>
+<div class="information" *ngIf="!(auth.authState$ | async)">
+    <p>Konta: <br> admin: admin@admin.pl <br> pracownik: emp@emp.pl <br> vip: vip@vip.pl <br> użytkownik: reader@reader.pl <br> Hasło do wszystkich kont: admin123 </p>
+</div>
+<div class="logged">
+    <p class="text" *ngIf="auth.authState$ | async">Witaj, {{ (auth.authState$ | async)?.email }}</p>
+    <button class="logout" (click)="signOut()" *ngIf="auth.authState$ | async">Wyloguj</button>
+</div>
+</div>

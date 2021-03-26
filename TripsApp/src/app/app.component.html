@@ -1,0 +1,21 @@
+<main>
+<div *ngIf="!(auth.authState$ | async)">
+    <app-login></app-login>
+</div>
+
+<div *ngIf="auth.authState$ | async">
+<header>
+    <div class="links">
+        <h1>Super wycieczki</h1>
+        <a routerLink="/wycieczki" routerLinkActive="active">Wycieczki</a>
+        <a routerLink="/koszyk" routerLinkActive="active">Koszyk</a>
+        <a routerLink="/dodaj-wycieczke" routerLinkActive="active" *ngIf="(auth.canEdit())">Dodaj</a>
+        <a routerLink="/admin" routerLinkActive="active" *ngIf="(auth.canDelete())">Panel</a>
+    </div>
+    <app-login class="login"></app-login>
+</header>
+    <div class="components">
+        <router-outlet ></router-outlet>
+    </div>
+</div>
+</main>
